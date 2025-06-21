@@ -1,5 +1,5 @@
-s<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" >
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,69 +8,85 @@ s<!DOCTYPE html>
 </head>
 <body>
     <header>
-        <h1>Agricultural Production Optimization</h1>
+        <nav id="navbar" class="navbar">
+            <div class="navbar-left">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/plant-under-sun.png" alt="Logo" class="logo" />
+                <span class="site-title">Agricultural Production Optimization</span>
+            </div>
+            <ul>
+                <li><a href="#dataset-summary">Dataset Summary</a></li>
+                <li><a href="#crop-stats">Crop Statistics</a></li>
+                <li><a href="#condition-comparison">Condition Comparison</a></li>
+                <li><a href="#crop-prediction">Crop Suggestion Prediction</a></li>
+                <li><a href="#model-metrics">Model Accuracy and Confusion Matrix</a></li>
+            </ul>
+            <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+        </nav>
     </header>
+    <main class="container">
+        <div class="hero-banner">
+            Optimize Your Agricultural Production with Data-Driven Insights
+        </div>
 
-    <div class="hero-banner">
-        Optimize Your Agricultural Production with Data-Driven Insights
-    </div>
+        <section id="dataset-summary">
+            <h2>Dataset Summary</h2>
+            <div id="summary-stats"></div>
+            <canvas id="distributionChart" width="900" height="400"></canvas>
+        </section>
 
-    <section id="dataset-summary">
-        <h2>Dataset Summary</h2>
-        <div id="summary-stats"></div>
-        <canvas id="distributionChart" width="900" height="400"></canvas>
-    </section>
+        <section id="crop-stats">
+            <h2>Crop Statistics</h2>
+            <label for="crop-select">Select Crop:</label>
+            <select id="crop-select"></select>
+            <pre id="crop-summary"></pre>
+        </section>
 
-    <section id="crop-stats">
-        <h2>Crop Statistics</h2>
-        <label for="crop-select">Select Crop:</label>
-        <select id="crop-select"></select>
-        <pre id="crop-summary"></pre>
-    </section>
+        <section id="condition-comparison">
+            <h2>Condition Comparison</h2>
+            <label for="condition-select">Select Condition:</label>
+            <select id="condition-select">
+                <option value="N">Nitrogen (N)</option>
+                <option value="P">Phosphorous (P)</option>
+                <option value="K">Potassium (K)</option>
+                <option value="temperature">Temperature</option>
+                <option value="ph">pH</option>
+                <option value="humidity">Humidity</option>
+                <option value="rainfall">Rainfall</option>
+            </select>
+            <pre id="condition-comparison-output"></pre>
+        </section>
 
-    <section id="condition-comparison">
-        <h2>Condition Comparison</h2>
-        <label for="condition-select">Select Condition:</label>
-        <select id="condition-select">
-            <option value="N">Nitrogen (N)</option>
-            <option value="P">Phosphorous (P)</option>
-            <option value="K">Potassium (K)</option>
-            <option value="temperature">Temperature</option>
-            <option value="ph">pH</option>
-            <option value="humidity">Humidity</option>
-            <option value="rainfall">Rainfall</option>
-        </select>
-        <pre id="condition-comparison-output"></pre>
-    </section>
+        <section id="crop-prediction">
+            <h2>Crop Suggestion Prediction</h2>
+            <form id="prediction-form">
+                <label for="input-N">Nitrogen (N):</label>
+                <input type="number" id="input-N" name="N" required placeholder="e.g. 90" />
+                <label for="input-P">Phosphorous (P):</label>
+                <input type="number" id="input-P" name="P" required placeholder="e.g. 40" />
+                <label for="input-K">Potassium (K):</label>
+                <input type="number" id="input-K" name="K" required placeholder="e.g. 40" />
+                <label for="input-temperature">Temperature (°C):</label>
+                <input type="number" id="input-temperature" name="temperature" required placeholder="e.g. 20" />
+                <label for="input-ph">pH:</label>
+                <input type="number" step="0.1" id="input-ph" name="ph" required placeholder="e.g. 7" />
+                <label for="input-humidity">Humidity (%):</label>
+                <input type="number" id="input-humidity" name="humidity" required placeholder="e.g. 80" />
+                <label for="input-rainfall">Rainfall (mm):</label>
+                <input type="number" id="input-rainfall" name="rainfall" required placeholder="e.g. 200" />
+                <button type="submit">Predict Crop</button>
+            </form>
+            <div id="prediction-result"></div>
+        </section>
 
-    <section id="crop-prediction">
-        <h2>Crop Suggestion Prediction</h2>
-        <form id="prediction-form">
-            <label for="input-N">Nitrogen (N):</label>
-            <input type="number" id="input-N" name="N" required placeholder="e.g. 90" />
-            <label for="input-P">Phosphorous (P):</label>
-            <input type="number" id="input-P" name="P" required placeholder="e.g. 40" />
-            <label for="input-K">Potassium (K):</label>
-            <input type="number" id="input-K" name="K" required placeholder="e.g. 40" />
-            <label for="input-temperature">Temperature (°C):</label>
-            <input type="number" id="input-temperature" name="temperature" required placeholder="e.g. 20" />
-            <label for="input-ph">pH:</label>
-            <input type="number" step="0.1" id="input-ph" name="ph" required placeholder="e.g. 7" />
-            <label for="input-humidity">Humidity (%):</label>
-            <input type="number" id="input-humidity" name="humidity" required placeholder="e.g. 80" />
-            <label for="input-rainfall">Rainfall (mm):</label>
-            <input type="number" id="input-rainfall" name="rainfall" required placeholder="e.g. 200" />
-            <button type="submit">Predict Crop</button>
-        </form>
-        <div id="prediction-result"></div>
-    </section>
-
-    <section id="model-metrics">
-        <h2>Model Accuracy and Confusion Matrix</h2>
-        <p>Accuracy: <span id="model-accuracy">Loading...</span></p>
-        <div id="confusionMatrixTableContainer"></div>
-    </section>
-
+        <section id="model-metrics">
+            <h2>Model Accuracy and Confusion Matrix</h2>
+            <p>Accuracy: <span id="model-accuracy">Loading...</span></p>
+            <div id="confusionMatrixTableContainer"></div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 Agricultural Production Optimizer 
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>

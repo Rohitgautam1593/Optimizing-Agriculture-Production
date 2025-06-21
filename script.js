@@ -294,6 +294,54 @@ async function loadModelMetrics() {
     container.appendChild(table);
 }
 
+const themeToggleBtn = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load saved theme from localStorage
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        themeToggleBtn.textContent = '☀️';
+    } else {
+        document.documentElement.classList.remove('dark-mode');
+        themeToggleBtn.textContent = '🌙';
+    }
+}
+
+// Toggle theme and save preference
+function toggleTheme() {
+    if (document.documentElement.classList.contains('dark-mode')) {
+        document.documentElement.classList.remove('dark-mode');
+        themeToggleBtn.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.classList.add('dark-mode');
+        themeToggleBtn.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+themeToggleBtn.addEventListener('click', toggleTheme);
+
+// Load theme on page load
+loadTheme();
+
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        navbar.style.top = '-70px'; // hide navbar
+    } else {
+        // Scrolling up
+        navbar.style.top = '0';
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+});
+
 // Initialize app
 loadData();
 loadModelMetrics();
