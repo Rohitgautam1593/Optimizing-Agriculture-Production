@@ -1,48 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Agricultural Production Optimization</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <header>
         <nav id="navbar" class="navbar">
             <div class="navbar-left">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/plant-under-sun.png" alt="Logo" class="logo" />
+                <!-- Updated logo icon with Font Awesome -->
+                <i class="fas fa-seedling logo-icon"></i> 
                 <span class="site-title">Agricultural Production Optimization</span>
             </div>
             <ul>
                 <li><a href="#dataset-summary">Dataset Summary</a></li>
                 <li><a href="#crop-stats">Crop Statistics</a></li>
                 <li><a href="#condition-comparison">Condition Comparison</a></li>
-                <li><a href="#crop-prediction">Crop Suggestion Prediction</a></li>
-                <li><a href="#model-metrics">Model Accuracy and Confusion Matrix</a></li>
+                <li><a href="#crop-prediction">Crop Prediction</a></li>
+                <li><a href="#model-metrics">Confusion Matrix</a></li>
             </ul>
             <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
         </nav>
     </header>
     <main class="container">
-        <div class="hero-banner">
-            Optimize Your Agricultural Production with Data-Driven Insights
-        </div>
-
+        
         <section id="dataset-summary">
-            <h2>Dataset Summary</h2>
+            <h2><i class="fas fa-chart-bar section-icon"></i> Dataset Summary</h2>
             <div id="summary-stats"></div>
-            <canvas id="distributionChart" width="900" height="400"></canvas>
+            <div class="chart-wrapper">
+                <canvas id="distributionChart" width="900" height="400"></canvas>
+            </div>
         </section>
 
         <section id="crop-stats">
-            <h2>Crop Statistics</h2>
+            <h2><i class="fas fa-leaf section-icon"></i> Crop Statistics</h2>
             <label for="crop-select">Select Crop:</label>
             <select id="crop-select"></select>
             <pre id="crop-summary"></pre>
         </section>
 
         <section id="condition-comparison">
-            <h2>Condition Comparison</h2>
+            <h2><i class="fas fa-balance-scale section-icon"></i> Condition Comparison</h2>
             <label for="condition-select">Select Condition:</label>
             <select id="condition-select">
                 <option value="N">Nitrogen (N)</option>
@@ -57,35 +59,35 @@
         </section>
 
         <section id="crop-prediction">
-            <h2>Crop Suggestion Prediction</h2>
+            <h2><i class="fas fa-lightbulb section-icon"></i> Crop Suggestion Prediction</h2>
             <form id="prediction-form">
                 <label for="input-N">Nitrogen (N):</label>
-                <input type="number" id="input-N" name="N" required placeholder="e.g. 90" />
+                <input type="number" id="input-N" name="N" required placeholder="e.g. 90" value="90" />
                 <label for="input-P">Phosphorous (P):</label>
-                <input type="number" id="input-P" name="P" required placeholder="e.g. 40" />
+                <input type="number" id="input-P" name="P" required placeholder="e.g. 40" value="40" />
                 <label for="input-K">Potassium (K):</label>
-                <input type="number" id="input-K" name="K" required placeholder="e.g. 40" />
+                <input type="number" id="input-K" name="K" required placeholder="e.g. 40" value="40" />
                 <label for="input-temperature">Temperature (°C):</label>
-                <input type="number" id="input-temperature" name="temperature" required placeholder="e.g. 20" />
+                <input type="number" step="0.01" id="input-temperature" name="temperature" required placeholder="e.g. 20" value="20" />
                 <label for="input-ph">pH:</label>
-                <input type="number" step="0.1" id="input-ph" name="ph" required placeholder="e.g. 7" />
+                <input type="number" step="0.01" id="input-ph" name="ph" required placeholder="e.g. 7" value="7" />
                 <label for="input-humidity">Humidity (%):</label>
-                <input type="number" id="input-humidity" name="humidity" required placeholder="e.g. 80" />
+                <input type="number" step="0.01" id="input-humidity" name="humidity" required placeholder="e.g. 80" value="80" />
                 <label for="input-rainfall">Rainfall (mm):</label>
-                <input type="number" id="input-rainfall" name="rainfall" required placeholder="e.g. 200" />
+                <input type="number" step="0.01" id="input-rainfall" name="rainfall" required placeholder="e.g. 200" value="200" />
                 <button type="submit">Predict Crop</button>
             </form>
             <div id="prediction-result"></div>
         </section>
 
         <section id="model-metrics">
-            <h2>Model Accuracy and Confusion Matrix</h2>
+            <h2><i class="fas fa-flask section-icon"></i> Model Accuracy and Confusion Matrix</h2>
             <p>Accuracy: <span id="model-accuracy">Loading...</span></p>
             <div id="confusionMatrixTableContainer"></div>
         </section>
     </main>
     <footer>
-        &copy; 2024 Agricultural Production Optimizer 
+        &copy; 2024 Agricultural Production Optimizer
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
